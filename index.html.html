@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #trophy {
+      display: none;
+      width: 150px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Guess the Number (1-100)</h1>
+  <input type="number" id="guessInput" placeholder="Enter your guess" />
+  <button onclick="checkGuess()">Guess</button>
+  <p id="feedback"></p>
+  <img id="trophy" src="https://cdn-icons-png.flaticon.com/512/2278/2278992.png" alt="Trophy">
+
+  <script>
+    const secretNumber = Math.floor(Math.random() * 100) + 1;
+
+    function showFeedback(message) {
+      document.getElementById("feedback").textContent = message;
+    }
+
+    function showTrophy() {
+      document.getElementById("trophy").style.display = "block";
+    }
+
+    function checkGuess() {
+      const userGuess = parseInt(document.getElementById("guessInput").value);
+
+      if (isNaN(userGuess)) {
+        showFeedback("Please enter a valid number.");
+        return;
+      }
+
+      if (userGuess < secretNumber) {
+        showFeedback("Too low!");
+      } else if (userGuess > secretNumber) {
+        showFeedback("Too high!");
+      } else {
+        showFeedback("🎉 Correct! You win!");
+        showTrophy(); // Show trophy image
+      }
+    }
+  </script>
+
+</body>
+</html>
